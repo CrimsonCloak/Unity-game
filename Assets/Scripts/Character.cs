@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstScript : MonoBehaviour
+public class Character : MonoBehaviour
 {      
-    public float moveSpeed = 5f;
+    public float walkSpeed = 5f;
+    public float moveSpeed;
+    public float sprintSpeed = 10f;
     public float jumpStrength = 5f;
     public Transform groundCheck;
     public LayerMask groundLayer;
@@ -17,6 +19,7 @@ public class FirstScript : MonoBehaviour
     }
 
     void Update()
+
     {
 
         // STUFF FOR MOVEMENT
@@ -26,6 +29,17 @@ public class FirstScript : MonoBehaviour
         Vector2 movement = new Vector2(horizontalInput, verticalInput).normalized;
 
         rb.velocity = movement * moveSpeed;
+
+        // Sprinting
+        if(Input.GetButtonDown("Jump"))
+        {
+            moveSpeed = sprintSpeed;
+        }
+        else
+        {
+            moveSpeed = walkSpeed;
+        }
+
         // // Rotation testing
         // if (movement != Vector2.zero)
         // {
@@ -35,14 +49,18 @@ public class FirstScript : MonoBehaviour
 
 
         // STUFF FOR JUMPING
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        // isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
 
-        if (isGrounded && Input.GetButtonDown("Jump"))
-        {
-            // Apply jump force to the Rigidbody
-            rb.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
-        }
+        // if (isGrounded && Input.GetButtonDown("Jump"))
+        // {
+        //     // Apply jump force to the Rigidbody
+        //     rb.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
+        // }
 
     }
+    // private void Sprint()
+    // {
+    //     moveSpeed = sprintSpeed;
+    // }
 }
