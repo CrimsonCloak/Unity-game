@@ -24,21 +24,11 @@ public class Character : MonoBehaviour
 
         // STUFF FOR MOVEMENT
         float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
 
-        Vector2 movement = new Vector2(horizontalInput, verticalInput).normalized;
+
+        Vector2 movement = new Vector2(horizontalInput, 0).normalized;
 
         rb.velocity = movement * moveSpeed;
-
-        // Sprinting
-        if(Input.GetButtonDown("Jump"))
-        {
-            moveSpeed = sprintSpeed;
-        }
-        else
-        {
-            moveSpeed = walkSpeed;
-        }
 
         // // Rotation testing
         // if (movement != Vector2.zero)
@@ -48,15 +38,15 @@ public class Character : MonoBehaviour
         // }
 
 
-        // STUFF FOR JUMPING
-        // isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+       //STUFF FOR JUMPING
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
 
-        // if (isGrounded && Input.GetButtonDown("Jump"))
-        // {
-        //     // Apply jump force to the Rigidbody
-        //     rb.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
-        // }
+        if (isGrounded && Input.GetButtonDown("Jump"))
+        {
+            // Apply jump force to the Rigidbody
+            rb.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
+        }
 
     }
     // private void Sprint()
