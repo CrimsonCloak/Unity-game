@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
     private bool isGrounded;
     private const float groundCheckRadius = 0.2f;
     private bool normalGravity = true;
-    
+    private bool isJumping = false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -66,8 +66,9 @@ public class Character : MonoBehaviour
         // }
 
 
-      if (Input.GetButtonDown("Jump"))
+      if (Input.GetButtonDown("Jump") && !isJumping)
         {
+            isJumping = true;
             // Reverse the gravity
             rb.gravityScale = NegativeGravityStrength;
             //Wait x amount of seconds
@@ -78,7 +79,8 @@ public class Character : MonoBehaviour
     {
     yield return new WaitForSeconds(1);
     // Return gravity to normal
-    rb.gravityScale = PositiveGravityStrength;
+        rb.gravityScale = PositiveGravityStrength;
+        isJumping = false;
     }
 
 
