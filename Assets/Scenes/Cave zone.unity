@@ -46558,8 +46558,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  NegativeGravityStrength: -16
-  PositiveGravityStrength: 16
+  NegativeGravityStrength: -24
+  PositiveGravityStrength: 20
 --- !u!4 &1658292809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3151412129623190752, guid: 4c7668f32ddf4c843bc8d57bf6b43000, type: 3}
