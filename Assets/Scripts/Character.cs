@@ -23,7 +23,6 @@ public class Character : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 2;
     }
 
     void Update()
@@ -50,21 +49,38 @@ public class Character : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
 
-        // if (isGrounded && Input.GetButtonDown("Jump"))
-        if (Input.GetButtonDown("Jump"))
-        {
-            if(normalGravity){
-                rb.gravityScale = NegativeGravityStrength;
-                normalGravity = false;
-            }
+        // // if (isGrounded && Input.GetButtonDown("Jump"))
+        // if (Input.GetButtonDown("Jump"))
+        // {
+        //     if(normalGravity){
+        //         rb.gravityScale = NegativeGravityStrength;
+        //         normalGravity = false;
+        //     }
 
-            else {
-                rb.gravityScale = PositiveGravityStrength;
-                normalGravity = true;
-            }
+        //     else {
+        //         rb.gravityScale = PositiveGravityStrength;
+        //         normalGravity = true;
+        //     }
             
        
+        // }
+
+
+      if (Input.GetButtonDown("Jump"))
+        {
+            // Reverse the gravity
+            rb.gravityScale = NegativeGravityStrength;
+            //Wait x amount of seconds
+            StartCoroutine(ReturnGravity());
+
         }
+    IEnumerator ReturnGravity()
+    {
+    yield return new WaitForSeconds(1);
+    // Return gravity to normal
+    rb.gravityScale = PositiveGravityStrength;
+    }
+
 
     }
     // private void Sprint()

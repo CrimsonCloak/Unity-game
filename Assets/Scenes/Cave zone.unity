@@ -46553,11 +46553,13 @@ MonoBehaviour:
   walkSpeed: 5
   moveSpeed: 5
   sprintSpeed: 10
-  jumpStrength: 20
+  jumpStrength: 40
   groundCheck: {fileID: 1111686543}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  NegativeGravityStrength: -16
+  PositiveGravityStrength: 16
 --- !u!4 &1658292809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3151412129623190752, guid: 4c7668f32ddf4c843bc8d57bf6b43000, type: 3}
@@ -46578,7 +46580,7 @@ Rigidbody2D:
   m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
