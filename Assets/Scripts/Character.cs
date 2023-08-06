@@ -10,12 +10,20 @@ public class Character : MonoBehaviour
     public float jumpStrength = 5f;
     public Transform groundCheck;
     public LayerMask groundLayer;
+    public int NegativeGravityStrength = -8;
+    public int PositiveGravityStrength = 8;
+
+
+
     private Rigidbody2D rb;
     private bool isGrounded;
     private const float groundCheckRadius = 0.2f;
+    private bool normalGravity = true;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 2;
     }
 
     void Update()
@@ -42,10 +50,20 @@ public class Character : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
 
-        if (isGrounded && Input.GetButtonDown("Jump"))
+        // if (isGrounded && Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
-            // Apply jump force to the Rigidbody
-            rb.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
+            if(normalGravity){
+                rb.gravityScale = NegativeGravityStrength;
+                normalGravity = false;
+            }
+
+            else {
+                rb.gravityScale = PositiveGravityStrength;
+                normalGravity = true;
+            }
+            
+       
         }
 
     }
