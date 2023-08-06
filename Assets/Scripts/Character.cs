@@ -66,9 +66,8 @@ public class Character : MonoBehaviour
         // }
 
 
-      if (Input.GetButtonDown("Jump") && !isJumping)
+      if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            isJumping = true;
             // Reverse the gravity
             rb.gravityScale = NegativeGravityStrength;
             //Wait x amount of seconds
@@ -80,7 +79,6 @@ public class Character : MonoBehaviour
     yield return new WaitForSeconds(1);
     // Return gravity to normal
         rb.gravityScale = PositiveGravityStrength;
-        isJumping = false;
     }
 
 
