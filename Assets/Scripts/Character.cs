@@ -12,14 +12,15 @@ public class Character : MonoBehaviour
     public LayerMask groundLayer;
     public int NegativeGravityStrength = -8;
     public int PositiveGravityStrength = 8;
+    public int Coins = 0;
 
 
 
     private Rigidbody2D rb;
     private bool isGrounded;
     private const float groundCheckRadius = 0.2f;
-    private bool normalGravity = true;
-    private bool isJumping = false;
+    // private bool normalGravity = true;
+    // private bool isJumping = false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -87,4 +88,5 @@ public class Character : MonoBehaviour
     // {
     //     moveSpeed = sprintSpeed;
     // }
+
 }
