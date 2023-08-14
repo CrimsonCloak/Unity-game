@@ -29,7 +29,6 @@ public class Character : MonoBehaviour
     void Update()
 
     {
-
         // STUFF FOR MOVEMENT
         float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -69,6 +68,7 @@ public class Character : MonoBehaviour
 
       if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            Debug.Log("Pressed jump!");
             // Reverse the gravity
             rb.gravityScale = NegativeGravityStrength;
             //Wait x amount of seconds
@@ -84,9 +84,24 @@ public class Character : MonoBehaviour
 
 
     }
-    // private void Sprint()
-    // {
-    //     moveSpeed = sprintSpeed;
-    // }
+    private void OnTriggerStay2D (Collider2D collision)  {
 
+        // Collision and mechanics for being on ladders
+
+        if (collision.gameObject.tag == "Ladder")
+        {
+            rb.gravityScale = 0;
+            // Debug.Log("Collison!");
+        }
+    }
+        private void OnTriggerExit2D(Collider2D collision) 
+    {
+
+        // Collision and mechanics for exiting off ladders
+
+        if (collision.gameObject.tag == "Ladder")
+        {
+            rb.gravityScale = PositiveGravityStrength;
+        }
+     }
 }
